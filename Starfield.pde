@@ -2,15 +2,23 @@ Particle[] stars;//your code here
 void setup()
 {
 	size(600, 600);
-	//background(0, 0, 0);
+	//background(0, 0, 0); //your code here
 	stars = new Particle[200];
-	//stars[0] = new OddballParticle();
 	for(int i = 0; i < stars.length; i++)
 	{
 		stars[i] = new NormalParticle();
 	}
 	stars[0] = new OddballParticle();
-	stars[1] = new JumboParticle();//your code here
+	stars[1] = new JumboParticle();
+}
+
+void mousePressed(){
+	for(int i = 0; i < stars.length; i++)
+	{
+		stars[i] = new NormalParticle();
+	}
+	stars[0] = new OddballParticle();
+	stars[1] = new JumboParticle();
 }
 void draw()
 {
@@ -20,7 +28,8 @@ void draw()
 	{
 		stars[i].move();
 		stars[i].show();
-	}//your code here
+	} //your code here
+
 }
 class NormalParticle implements Particle
 {
@@ -42,6 +51,13 @@ class NormalParticle implements Particle
 
 		double sine = (Math.sin(myAngle)) * mySpeed;
 		y += sine;
+
+		
+		/*if((x > 600 || x < 0) || (y > 600 || y < 0))
+		{
+			x = 300;
+			y = 300;
+		}*/
 
 		if((x > 600 || x < 0) || (y > 600 || y < 0))
 		{
@@ -127,20 +143,20 @@ class OddballParticle implements Particle//uses an interface
 	 		}
 
 	 		//bounce off wall hor
-	 		if(myX > 600)
+	 		if(myX > 400)
 	 		{
 	 			xBiased = 1.0;
 	 		}
-	 		else if(myX < 0)
+	 		else if(myX < 200)
 	 		{
 	 			xBiased = 0.0;
 	 		}
 	 		//bounce off wall ver
-	 		if(myY > 600)
+	 		if(myY > 400)
 	 		{
 	 			yBiased = 1.0;
 	 		}
-	 		else if(myY < 0)
+	 		else if(myY < 200)
 	 		{
 	 			yBiased = 0.0;
 	 		}
@@ -164,15 +180,22 @@ class OddballParticle implements Particle//uses an interface
 
 class JumboParticle extends NormalParticle//uses inheritance
 {
+	JumboParticle()
+	{
+		myColor = color(255,(int)(Math.random()*255),255);
+		mySpeed = (Math.random()*3) + 1;
+		myAngle = Math.random() * 360;
+		x = 300;
+		y = 300;
+	}
 	public void show()
 	{
 		fill(myColor);
 		ellipse((float)x,(float)y,60,60);
 	}
 
+
 }
 
-void mouseIsPressed(){
-	redraw();
-}
+
 
