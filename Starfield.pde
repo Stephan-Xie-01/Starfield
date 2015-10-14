@@ -88,7 +88,7 @@ class OddballParticle implements Particle//uses an interface
 		myX = 200;
 	 	myY = 200;
 	 	myColor = color(250,(int)(Math.random()*250),(int)(Math.random()*250));
-	 	mySize = 10.0;
+	 	mySize = 30.0;
 
 	 	//move variables
 	 	xBiased = 0.5;
